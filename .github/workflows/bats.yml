@@ -19,5 +19,6 @@ jobs:
       - name: install bats
         run: sudo apt-get install -y bats
       - uses: actions/checkout@v2
+      - run: chmod 755 ./entrypoints.sh
       - name: bats test
         run: bats ex3/test.sh
