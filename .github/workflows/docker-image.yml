@@ -6,14 +6,28 @@ on:
   pull_request:
     branches: [ main ]
 
+
+
 jobs:
+
 
   build:
 
     runs-on: ubuntu-latest
 
     steps:
+   
     - uses: actions/checkout@v2
-    - uses: ./action-a
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag testlink:$(date +%s)
+    - name: docker login
+      env:
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+
+        
+      run:
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - name: build the docker image
+      run: docker build . --file action-a/Dockerfile --tag ${{secrets.DOCKER_TAG}}:$(date +%s)
+      
+    - name: Docker push
+      run: docker push ${{secrets.DOCKER_TAG}}:$(date +%m)
