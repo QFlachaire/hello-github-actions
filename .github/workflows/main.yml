@@ -9,3 +9,8 @@ jobs:
       - uses: ./action-a
         with:
           MY_NAME: "Mona"
+  dockerhub:
+    name: dockerHub push image
+    runs-on: ubuntu-latest
+    steps:
+    - uses: ./actions-b
