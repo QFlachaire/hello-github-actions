@@ -11,9 +11,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    
     steps:
-    - name: bats test
-    - run: sudo apt-get install -y bats
-    - uses: actions/checkout@v2
-    - run: bats ex3/test.sh
+      - name: bats test
+      - run: sudo apt-get install -y bats
+      - uses: actions/checkout@v2
+      - run: bats ex3/test.sh
