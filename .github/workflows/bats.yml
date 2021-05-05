@@ -15,6 +15,7 @@ jobs:
     
     steps:
       - uses: actions/checkout@v2
+      - uses: ./ex3
       - name: install bats
         run: sudo apt-get install -y bats
         
