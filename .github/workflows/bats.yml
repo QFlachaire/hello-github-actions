@@ -18,6 +18,6 @@ jobs:
       - uses: ./ex3
       - name: install bats
         run: sudo apt-get install -y bats
-        
+      - uses: actions/checkout@v2
       - name: bats test
         run: bats ex3/test.sh
