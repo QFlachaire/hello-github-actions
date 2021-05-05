@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
   pull_request:
-    branches: [ main 
+    branches: [ main ]
 
 jobs:
 
@@ -13,21 +13,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-   
+    - name: bats test
+  
+    - run: sudo apt-get install -y bats
     - uses: actions/checkout@v2
-    - name: docker login
-      env:
-        DOCKER_USER: ${{secrets.DOCKER_USER}}
-        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-
-      run:
-        git clone https://github.com/sstephenson/bats.git
-        cd bats
-        ./install.sh /usr/local
-      run:
-        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-    - name: build the docker image
-      run: docker build . --file ex3/Dockerfile --tag ${{secrets.DOCKER_TAG}}:$(date +%m)
-      
-    - name: Docker push
-      run: docker push ${{secrets.DOCKER_TAG}}:$(date +%m)
+    - run: bats ex3/test.sh
