@@ -1,0 +1,6 @@
+name: 'bats-test'
+description: 'Run bats tests on a repository'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+ 
